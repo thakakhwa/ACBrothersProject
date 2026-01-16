@@ -3,14 +3,15 @@
    ============================================ */
 
 .splash {
-  position: fixed;
-  inset: 0;
+  position: relative;
+  min-height: calc(100vh + 20px); /* Extend height by 20px at bottom */
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #000000;
   z-index: 9999;
-  overflow: visible; /* Allow images to show fully without clipping */
+  overflow: hidden; /* Prevent black borders when scrolling up */
 }
 
 /* Main pattern - offset so inner circle is at page center */
@@ -222,6 +223,151 @@
   opacity: 1;
 }
 
+/* Logo 2 - Center of screen */
+.splash__logo-center {
+  position: fixed;
+  width: 811px;
+  height: 152.25px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(87%) sepia(6%) saturate(800%) hue-rotate(25deg) brightness(92%) contrast(88%) opacity(0.8); /* Color filter for #CCC2A8 + dimming */
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+  z-index: 10000;
+}
+
+.splash__logo-center--visible {
+  opacity: 1;
+}
+
+/* Burger Menu - Top left */
+.splash__burger-menu {
+  position: fixed;
+  top: 48.6px; /* Center-align with button */
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+  z-index: 10000;
+  cursor: pointer;
+  transform: translateY(-50%); /* Center vertically */
+}
+
+.splash__burger-menu--visible {
+  opacity: 1;
+}
+
+.splash__burger-bar {
+  height: 1.74px;
+  background-color: #ffffff;
+  border-radius: 1px;
+  transition: transform 0.3s ease-out;
+}
+
+.splash__burger-bar--1 {
+  width: 40px;
+}
+
+.splash__burger-bar--2 {
+  width: 31.3px;
+}
+
+.splash__burger-bar--3 {
+  width: 20px;
+}
+
+/* Hover animation - bars 2 and 3 align with bar 1 */
+.splash__burger-menu:hover .splash__burger-bar--2 {
+  transform: translateX(8.7px); /* 40px - 31.3px = 8.7px to align with bar 1 */
+}
+
+.splash__burger-menu:hover .splash__burger-bar--3 {
+  transform: translateX(20px); /* 40px - 20px = 20px to align with bar 1 */
+}
+
+/* Get Quote Button - Top right */
+.splash__get-quote {
+  position: fixed;
+  top: 48.6px; /* 40px + (burger menu height / 2) to center-align with burger menu */
+  right: 40px;
+  padding: 8px 24px; /* Increased width */
+  background-color: transparent; /* Transparent background */
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 30px; /* Significantly rounded corners */
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.8s ease-in, background-color 0.5s ease, color 0.5s ease;
+  z-index: 10000;
+  outline: none;
+  transform: translateY(-50%); /* Center vertically */
+}
+
+.splash__get-quote:hover {
+  background-color: #DDD3B6; /* Beige background on hover */
+  color: #142C22; /* Dark green text on hover */
+}
+
+.splash__get-quote--visible {
+  opacity: 1;
+}
+
+/* Scroll Down Arrow Indicator */
+.splash__scroll-arrow {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+.splash__scroll-arrow--visible {
+  opacity: 1;
+}
+
+.splash__scroll-arrow svg .scroll-line {
+  transform-origin: 5px 35px; /* Bottom of the line */
+  animation: shorten-line 1s infinite;
+}
+
+.splash__scroll-arrow svg .scroll-arrow {
+  animation: move-arrow-up 1s infinite;
+}
+
+@keyframes shorten-line {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.5); /* Line gets shorter from bottom */
+  }
+}
+
+@keyframes move-arrow-up {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Arrow moves up towards the line */
+  }
+}
+
 /* Wobble/bounce keyframes for individual side images */
 @keyframes wobble-left {
   0% { transform: translateX(-80px); opacity: 0; }
@@ -324,12 +470,13 @@
   left: 50% !important;
   top: 50% !important;
   width: 100vw !important;
-  height: 100vh !important;
+  height: calc(100vh + 20px) !important; /* Extend 20px at bottom */
   object-fit: cover !important; /* Fill entire screen - no black bars */
+  opacity: 0.6 !important; /* Dim the background image more */
   z-index: 2 !important; /* Same level as other images */
   transform: translate(-50%, -50%) !important; /* Center it */
   transform-origin: center center !important;
-  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; /* Smooth, professional easing */
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease !important; /* Smooth, professional easing */
 }
 
 /* Fly away keyframes */

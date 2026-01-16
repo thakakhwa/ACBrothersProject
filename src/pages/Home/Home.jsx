@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Splash1 from '../../assets/Splash1.png';
 import Splash1AddOn from '../../assets/Splash1AddOn.png';
 import ACBLogo from '../../assets/ACBLogo.png';
+import ACBLogo2 from '../../assets/ACBLogo2.png';
 import AddOn1 from '../../assets/AddOn1.jpg';
 import AddOn2 from '../../assets/AddOn2.png';
 import Img1 from '../../assets/1.png';
@@ -170,6 +171,27 @@ const Home = () => {
         alt="ACBrothers" 
         className={`splash__logo-top ${showTopLogo ? 'splash__logo-top--visible' : ''}`}
       />
+
+      {/* Logo 2 - Center of screen after expansion */}
+      <img 
+        src={ACBLogo2} 
+        alt="ACBrothers" 
+        className={`splash__logo-center ${showTopLogo ? 'splash__logo-center--visible' : ''}`}
+      />
+
+      {/* Burger Menu - Top left after expansion */}
+      <div className={`splash__burger-menu ${showTopLogo ? 'splash__burger-menu--visible' : ''}`}>
+        <div className="splash__burger-bar splash__burger-bar--1"></div>
+        <div className="splash__burger-bar splash__burger-bar--2"></div>
+        <div className="splash__burger-bar splash__burger-bar--3"></div>
+      </div>
+
+      {/* Get Quote Button - Top right after expansion */}
+      <button className={`splash__get-quote ${showTopLogo ? 'splash__get-quote--visible' : ''}`}>
+        Get Quote
+      </button>
+
+
     </div>
   );
 };
