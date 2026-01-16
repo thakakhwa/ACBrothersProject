@@ -14,6 +14,7 @@ import Img6 from '../../assets/6.png';
 import CircleGoing from '../../assets/CircleGoing.png';
 import Frame from '../../assets/Frame.png';
 import FramedPic from '../../assets/FramedPic.png';
+import AguyHoldingIdk from '../../assets/AguyHoldingIdk.png';
 import './Home.css';
 
 const Home = () => {
@@ -232,7 +233,7 @@ const Home = () => {
     <section className="section-two">
       <div className="section-two__rectangle">
         <p className="section-two__text">
-          WE REALIZE TIMELESS <span className="section-two__highlight">DOORS</span><br />
+          WE REALIZE TIMELESS <span className="section-two__highlight section-two__doors-hover"><span className="section-two__highlight-text">DOORS</span><img src={AguyHoldingIdk} alt="" className="section-two__doors-image" /></span><br />
           AND <span className="section-two__highlight">STAIRCASES</span> <span className="section-two__lowercase">under a Roof.</span>
         </p>
       </div>
