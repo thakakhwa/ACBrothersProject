@@ -614,7 +614,7 @@
   display: inline-block;
   background-color: #142C22;
   color: #F5F5DC;
-  padding: 4px 8px;
+  padding: 4px 20px;
   border-radius: 6px;
   margin: 0 2px;
   text-transform: uppercase;
@@ -633,7 +633,6 @@
 }
 
 .section-two__doors-image {
-  display: none;
   position: absolute;
   top: -110%;
   left: 0;
@@ -643,16 +642,53 @@
   object-position: 0% 20%;
   border-radius: 6px;
   z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.section-two__doors-hover .section-two__highlight-text {
+  transition: opacity 0.3s ease;
 }
 
 .section-two__doors-hover:hover .section-two__highlight-text {
   opacity: 0;
-  visibility: hidden;
-
 }
 
 .section-two__doors-hover:hover .section-two__doors-image {
-  display: block;
+  opacity: 1;
+}
+
+.section-two__staircases-hover {
+  position: relative;
+  overflow: hidden;
+  vertical-align: top;
+  z-index: 100;
+}
+
+.section-two__staircases-image {
+  position: absolute;
+  top: -300%;
+  left: 0;
+  width: 100%;
+  height: 400%;
+  object-fit: cover;
+  object-position: 70% 30%;
+  border-radius: 6px;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.section-two__staircases-hover .section-two__highlight-text {
+  transition: opacity 0.3s ease;
+}
+
+.section-two__staircases-hover:hover .section-two__highlight-text {
+  opacity: 0;
+}
+
+.section-two__staircases-hover:hover .section-two__staircases-image {
+  opacity: 1;
 }
 
 .section-two__lowercase {

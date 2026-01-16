@@ -234,7 +234,7 @@ const Home = () => {
       <div className="section-two__rectangle">
         <p className="section-two__text">
           WE REALIZE TIMELESS <span className="section-two__highlight section-two__doors-hover"><span className="section-two__highlight-text">DOORS</span><img src={AguyHoldingIdk} alt="" className="section-two__doors-image" /></span><br />
-          AND <span className="section-two__highlight">STAIRCASES</span> <span className="section-two__lowercase">under a Roof.</span>
+          AND <span className="section-two__highlight section-two__staircases-hover"><span className="section-two__highlight-text">STAIRCASES</span><img src={Img5} alt="" className="section-two__staircases-image" /></span> <span className="section-two__lowercase">under a Roof.</span>
         </p>
       </div>
       <img 
