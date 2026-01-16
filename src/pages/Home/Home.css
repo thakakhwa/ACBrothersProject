@@ -61,16 +61,25 @@
   gap: 0;
 }
 
-/* Top row - perfectly aligned */
+/* Top row - offset to the left (ladder effect) */
 .splash__row--top {
-  transform: translateX(0); /* No offset - perfectly aligned */
+  transform: translateX(-30px); /* Offset left for ladder */
   visibility: hidden; /* Hidden initially */
+  transition: transform 1s ease-in-out; /* Smooth transition when gathering */
 }
 
-/* Bottom row - perfectly aligned */
+/* Bottom row - offset to the right (ladder effect) */
 .splash__row--bottom {
-  transform: translateX(0); /* No offset - perfectly aligned */
+  transform: translateX(30px); /* Offset right for ladder */
   visibility: hidden; /* Hidden initially */
+  transition: transform 1s ease-in-out; /* Smooth transition when gathering */
+}
+
+/* When gathered, align all rows perfectly */
+.splash__gallery--gathered .splash__row--top,
+.splash__gallery--gathered .splash__row--middle,
+.splash__gallery--gathered .splash__row--bottom {
+  transform: translateX(0) !important; /* Perfect alignment - all columns align */
 }
 
 /* Wobble animation for entire rows */
@@ -177,15 +186,15 @@
 @keyframes wobble-left-row {
   0% { transform: translateX(calc(-100% - 40px)); visibility: hidden; } /* Start off-screen left */
   1% { visibility: visible; }
-  60% { transform: translateX(50px); } /* Overshoot right */
-  80% { transform: translateX(-20px); } /* Bounce back left */
-  100% { transform: translateX(-25px); } /* Perfectly aligned - no offset */
+  60% { transform: translateX(20px); } /* Overshoot right */
+  80% { transform: translateX(-50px); } /* Bounce back left */
+  100% { transform: translateX(-30px); } /* End at left offset for ladder effect */
 }
 
 @keyframes wobble-right-row {
   0% { transform: translateX(calc(100% + 40px)); visibility: hidden; } /* Start off-screen right */
   1% { visibility: visible; }
-  60% { transform: translateX(-50px); } /* Overshoot left */
-  80% { transform: translateX(20px); } /* Bounce back right */
-  100% { transform: translateX(25px); } /* Perfectly aligned - no offset */
+  60% { transform: translateX(-20px); } /* Overshoot left */
+  80% { transform: translateX(50px); } /* Bounce back right */
+  100% { transform: translateX(30px); } /* End at right offset for ladder effect */
 }
