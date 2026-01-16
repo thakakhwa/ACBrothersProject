@@ -19,6 +19,7 @@ const Home = () => {
   const [showTopRow, setShowTopRow] = useState(false);
   const [showBottomRow, setShowBottomRow] = useState(false);
   const [gatherPhotos, setGatherPhotos] = useState(false);
+  const [expandCenter, setExpandCenter] = useState(false);
 
   useEffect(() => {
     // Step 1: Show the add-on image after 0.8 seconds
@@ -51,6 +52,11 @@ const Home = () => {
       setGatherPhotos(true);
     }, 5200);
 
+    // Step 7: Expand center and fly away other images after 6.5 seconds
+    const timer7 = setTimeout(() => {
+      setExpandCenter(true);
+    }, 6500);
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
@@ -58,6 +64,7 @@ const Home = () => {
       clearTimeout(timer4);
       clearTimeout(timer5);
       clearTimeout(timer6);
+      clearTimeout(timer7);
     };
   }, []);
 
@@ -71,25 +78,25 @@ const Home = () => {
       />
       
       {/* Gallery grid */}
-      <div className={`splash__gallery ${gatherPhotos ? 'splash__gallery--gathered' : ''}`}>
+      <div className={`splash__gallery ${gatherPhotos ? 'splash__gallery--gathered' : ''} ${expandCenter ? 'splash__gallery--expand' : ''}`}>
         {/* Top row - 1, 2, 3 from left */}
         <div className={`splash__row splash__row--top ${showTopRow ? 'splash__row--animated' : ''}`}>
           <img 
             src={Img1} 
             alt="" 
-            className={`splash__grid-image splash__grid-image--from-top ${showTopRow ? 'splash__grid-image--visible' : ''}`}
+            className={`splash__grid-image splash__grid-image--from-top splash__fly-top-left ${showTopRow ? 'splash__grid-image--visible' : ''}`}
             style={{ animationDelay: '0s' }}
           />
           <img 
             src={Img2} 
             alt="" 
-            className={`splash__grid-image splash__grid-image--from-top ${showTopRow ? 'splash__grid-image--visible' : ''}`}
+            className={`splash__grid-image splash__grid-image--from-top splash__fly-top ${showTopRow ? 'splash__grid-image--visible' : ''}`}
             style={{ animationDelay: '0.15s' }}
           />
           <img 
             src={Img3} 
             alt="" 
-            className={`splash__grid-image splash__grid-image--from-top ${showTopRow ? 'splash__grid-image--visible' : ''}`}
+            className={`splash__grid-image splash__grid-image--from-top splash__fly-top-right ${showTopRow ? 'splash__grid-image--visible' : ''}`}
             style={{ animationDelay: '0.3s' }}
           />
         </div>
@@ -99,17 +106,17 @@ const Home = () => {
           <img 
             src={AddOn1} 
             alt="" 
-            className={`splash__grid-image splash__side-image--left ${showSideImages ? 'splash__grid-image--visible' : ''}`}
+            className={`splash__grid-image splash__side-image--left splash__fly-left ${showSideImages ? 'splash__grid-image--visible' : ''}`}
           />
           <img 
             src={Splash1AddOn} 
             alt="" 
-            className={`splash__grid-image splash__addon ${showAddOn ? 'splash__addon--visible' : ''} ${zoomAddOn ? 'splash__addon--zoomed' : ''}`}
+            className={`splash__grid-image splash__addon splash__center-expand ${showAddOn ? 'splash__addon--visible' : ''} ${zoomAddOn ? 'splash__addon--zoomed' : ''}`}
           />
           <img 
             src={AddOn2} 
             alt="" 
-            className={`splash__grid-image splash__side-image--right ${showSideImages ? 'splash__grid-image--visible' : ''}`}
+            className={`splash__grid-image splash__side-image--right splash__fly-right ${showSideImages ? 'splash__grid-image--visible' : ''}`}
           />
         </div>
 
@@ -118,19 +125,19 @@ const Home = () => {
           <img 
             src={Img6} 
             alt="" 
-            className={`splash__grid-image splash__grid-image--from-bottom ${showBottomRow ? 'splash__grid-image--visible' : ''}`}
+            className={`splash__grid-image splash__grid-image--from-bottom splash__fly-bottom-left ${showBottomRow ? 'splash__grid-image--visible' : ''}`}
             style={{ animationDelay: '0s' }}
           />
           <img 
             src={Img5} 
             alt="" 
-            className={`splash__grid-image splash__grid-image--from-bottom ${showBottomRow ? 'splash__grid-image--visible' : ''}`}
+            className={`splash__grid-image splash__grid-image--from-bottom splash__fly-bottom ${showBottomRow ? 'splash__grid-image--visible' : ''}`}
             style={{ animationDelay: '0.15s' }}
           />
           <img 
             src={Img4} 
             alt="" 
-            className={`splash__grid-image splash__grid-image--from-bottom ${showBottomRow ? 'splash__grid-image--visible' : ''}`}
+            className={`splash__grid-image splash__grid-image--from-bottom splash__fly-bottom-right ${showBottomRow ? 'splash__grid-image--visible' : ''}`}
             style={{ animationDelay: '0.3s' }}
           />
         </div>

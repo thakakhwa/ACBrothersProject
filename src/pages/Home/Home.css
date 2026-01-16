@@ -225,3 +225,106 @@
   80% { transform: translateX(50px); } /* Bounce back right */
   100% { transform: translateX(30px); } /* End at right offset for ladder effect */
 }
+
+/* ============================================
+   Expand/Fly Away Animations
+   ============================================ */
+
+/* Fly away animations - triggered when gallery has --expand class */
+.splash__gallery--expand .splash__fly-top-left {
+  animation: fly-top-left 0.8s ease-in forwards !important;
+}
+
+.splash__gallery--expand .splash__fly-top {
+  animation: fly-top 0.8s ease-in forwards !important;
+}
+
+.splash__gallery--expand .splash__fly-top-right {
+  animation: fly-top-right 0.8s ease-in forwards !important;
+}
+
+.splash__gallery--expand .splash__fly-left {
+  animation: fly-left 0.8s ease-in forwards !important;
+}
+
+.splash__gallery--expand .splash__fly-right {
+  animation: fly-right 0.8s ease-in forwards !important;
+}
+
+.splash__gallery--expand .splash__fly-bottom-left {
+  animation: fly-bottom-left 0.8s ease-in forwards !important;
+}
+
+.splash__gallery--expand .splash__fly-bottom {
+  animation: fly-bottom 0.8s ease-in forwards !important;
+}
+
+.splash__gallery--expand .splash__fly-bottom-right {
+  animation: fly-bottom-right 0.8s ease-in forwards !important;
+}
+
+/* Center image expands to fill screen */
+.splash__gallery--expand .splash__center-expand {
+  animation: center-expand 1.2s ease-in-out forwards !important;
+  z-index: 100;
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+}
+
+/* Fly away keyframes */
+@keyframes fly-top-left {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(-150vw, -150vh); opacity: 0; }
+}
+
+@keyframes fly-top {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(0, -150vh); opacity: 0; }
+}
+
+@keyframes fly-top-right {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(150vw, -150vh); opacity: 0; }
+}
+
+@keyframes fly-left {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(-150vw); opacity: 0; }
+}
+
+@keyframes fly-right {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(150vw); opacity: 0; }
+}
+
+@keyframes fly-bottom-left {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(-150vw, 150vh); opacity: 0; }
+}
+
+@keyframes fly-bottom {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(0, 150vh); opacity: 0; }
+}
+
+@keyframes fly-bottom-right {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(150vw, 150vh); opacity: 0; }
+}
+
+/* Center expand to full screen */
+@keyframes center-expand {
+  0% { 
+    transform: translate(-50%, -50%) scale(1);
+    width: 520px;
+    height: 308px;
+    object-fit: cover;
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(1);
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+}
