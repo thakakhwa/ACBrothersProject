@@ -1,0 +1,106 @@
+/* ============================================
+   Services Page Styles
+   ============================================ */
+
+/* Page Header */
+.services__header {
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  padding: var(--space-24) 0 var(--space-16);
+  text-align: center;
+}
+
+.services__title {
+  color: var(--color-white);
+  font-size: var(--text-5xl);
+  margin-bottom: var(--space-4);
+}
+
+.services__subtitle {
+  color: var(--color-gray-300);
+  font-size: var(--text-xl);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Services List */
+.services__list {
+  background-color: var(--color-off-white);
+}
+
+.services__card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10);
+  margin-bottom: var(--space-8);
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
+
+.services__card:last-child {
+  margin-bottom: 0;
+}
+
+.services__card-title {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-4);
+}
+
+.services__card-description {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.services__card-features {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.services__card-features li {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  margin: 0;
+}
+
+/* CTA Section */
+.services__cta {
+  background-color: var(--color-primary-dark);
+}
+
+.services__cta-content {
+  text-align: center;
+}
+
+.services__cta h2 {
+  color: var(--color-white);
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-2);
+}
+
+.services__cta p {
+  color: var(--color-gray-400);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .services__header {
+    padding: var(--space-16) 0 var(--space-12);
+  }
+
+  .services__title {
+    font-size: var(--text-4xl);
+  }
+
+  .services__card {
+    padding: var(--space-6);
+  }
+}

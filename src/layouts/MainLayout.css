@@ -1,0 +1,11 @@
+/* ============================================
+   Main Layout Styles
+   ============================================ */
+
+.main-layout {
+  min-height: 100vh;
+}
+
+.main-layout__content {
+  min-height: 100vh;
+}
