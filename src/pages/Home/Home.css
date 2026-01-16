@@ -206,7 +206,7 @@
 
 /* Logo at top center after expansion */
 .splash__logo-top {
-  position: fixed;
+  position: absolute;
   width: 126.41px;
   height: 146px;
   left: 50%;
@@ -223,9 +223,9 @@
   opacity: 1;
 }
 
-/* Logo 2 - Center of screen */
+/* Logo 2 - Center of screen, scrolls with Splash1AddOn */
 .splash__logo-center {
-  position: fixed;
+  position: absolute;
   width: 811px;
   height: 152.25px;
   left: 50%;
@@ -235,7 +235,7 @@
   filter: brightness(0) saturate(100%) invert(87%) sepia(6%) saturate(800%) hue-rotate(25deg) brightness(92%) contrast(88%) opacity(0.8); /* Color filter for #CCC2A8 + dimming */
   opacity: 0;
   transition: opacity 0.8s ease-in;
-  z-index: 10000;
+  z-index: 10;
 }
 
 .splash__logo-center--visible {
@@ -244,7 +244,7 @@
 
 /* Burger Menu - Top left */
 .splash__burger-menu {
-  position: fixed;
+  position: absolute;
   top: 48.6px; /* Center-align with button */
   left: 40px;
   display: flex;
@@ -292,7 +292,7 @@
 
 /* Get Quote Button - Top right */
 .splash__get-quote {
-  position: fixed;
+  position: absolute;
   top: 48.6px; /* 40px + (burger menu height / 2) to center-align with burger menu */
   right: 40px;
   padding: 8px 24px; /* Increased width */
@@ -326,7 +326,7 @@
 
 /* Scroll Down Arrow Indicator */
 .splash__scroll-arrow {
-  position: fixed;
+  position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
@@ -466,7 +466,7 @@
 
 /* Center image expands to fill screen - pushing others away */
 .splash__gallery--expand .splash__center-expand {
-  position: fixed !important;
+  position: absolute !important;
   left: 50% !important;
   top: 50% !important;
   width: 100vw !important;
@@ -534,4 +534,83 @@
     height: 100vh;
     object-fit: cover;
   }
+}
+
+/* ============================================
+   Section Two - Second Page
+   ============================================ */
+
+.section-two {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #000000;
+}
+
+.section-two__rectangle {
+  width: 1440px;
+  max-width: 100%;
+  height: 341px;
+  background-color: #DDD3B6;
+}
+
+/* ============================================
+   Section Two - Content Area Below Splash
+   ============================================ */
+
+.section-two {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000000;
+}
+
+.section-two__rectangle {
+  width: 1440px;
+  max-width: 100%;
+  height: 341px;
+  background-color: #DDD3B6;
+  position: relative;
+  z-index: 2;
+}
+
+.section-two__circle {
+  position: absolute;
+  left: 50%;
+  top: 341px; /* Position at the border between rectangle and white box */
+  width: 536px;
+  height: 536px;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* Above both rectangles so it's visible and can blend */
+  mix-blend-mode: multiply; /* Blend with both beige and white rectangles */
+  opacity: 0.4; /* Semi-transparent */
+  filter: grayscale(100%) brightness(0.8); /* Make it grey */
+  animation: rotate-circle 10s linear infinite;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+@keyframes rotate-circle {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.section-two__white-box {
+  width: 1440px;
+  max-width: 100%;
+  height: 780px;
+  max-height: 780px;
+  min-height: 780px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 2;
 }
