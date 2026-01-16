@@ -1,4 +1,18 @@
 /* ============================================
+   Font Imports
+   ============================================ */
+
+@font-face {
+  font-family: 'Mourgen';
+  src: url('/fonts/Mourgen.woff2') format('woff2'),
+       url('/fonts/Mourgen.woff') format('woff'),
+       url('/fonts/Mourgen.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================
    Splash Screen Styles
    ============================================ */
 
@@ -573,31 +587,76 @@
   height: 341px;
   background-color: #DDD3B6;
   position: relative;
-  z-index: 2;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-two__text {
+  width: 739px;
+  height: 126px;
+  font-family: 'Mourgen', serif;
+  font-size: 41.96px;
+  font-weight: 100;
+  font-stretch: condensed;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  color: #142C22;
+  margin: 0 auto;
+  padding: 0;
+  display: block;
+}
+
+.section-two__highlight {
+  display: inline-block;
+  background-color: #142C22;
+  color: #F5F5DC;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin: 0 2px;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+.section-two__lowercase {
+  text-transform: lowercase !important;
+  font-weight: 100;
 }
 
 .section-two__circle {
   position: absolute;
   left: 50%;
-  top: 341px; /* Position at the border between rectangle and white box */
+  top: 290px; /* Shifted up from border */
   width: 536px;
   height: 536px;
   transform: translate(-50%, -50%);
-  z-index: 3; /* Above both rectangles so it's visible and can blend */
-  mix-blend-mode: multiply; /* Blend with both beige and white rectangles */
-  opacity: 0.4; /* Semi-transparent */
-  filter: grayscale(100%) brightness(0.8); /* Make it grey */
-  animation: rotate-circle 10s linear infinite;
+  z-index: 2; /* Above beige rectangle but below white box */
+  mix-blend-mode: multiply; /* Blend with beige rectangle */
+  opacity: 0.85; /* More visible, less transparent */
+  filter: grayscale(100%) brightness(0.6) contrast(1.1); /* Grey and more visible */
+  animation: rotate-circle 10s ease-in-out infinite;
   pointer-events: none;
   object-fit: contain;
 }
 
 @keyframes rotate-circle {
-  from {
+  0% {
     transform: translate(-50%, -50%) rotate(0deg);
   }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
+  20% {
+    transform: translate(-50%, -50%) rotate(126deg); /* 35% of 360deg = 126deg - forward in 2s */
+  }
+  40% {
+    transform: translate(-50%, -50%) rotate(0deg); /* Back to start - reverse in 2s */
+  }
+  70% {
+    transform: translate(-50%, -50%) rotate(0deg); /* Pause for 3 seconds (40% to 70% = 30% of 10s = 3s) */
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg); /* Hold until repeat */
   }
 }
 
@@ -612,5 +671,5 @@
   margin: 0;
   padding: 0;
   position: relative;
-  z-index: 2;
+  z-index: 3; /* Above circle to cover it */
 }

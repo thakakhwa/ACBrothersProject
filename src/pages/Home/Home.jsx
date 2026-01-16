@@ -25,6 +25,17 @@ const Home = () => {
   const [expandCenter, setExpandCenter] = useState(false);
   const [showTopLogo, setShowTopLogo] = useState(false);
 
+  // Disable scrolling during animations, enable after completion
+  useEffect(() => {
+    // Disable scrolling initially
+    document.body.style.overflow = 'hidden';
+    
+    return () => {
+      // Re-enable scrolling on cleanup (if component unmounts)
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   useEffect(() => {
     // Step 1: Show the add-on image after 0.8 seconds
     const timer1 = setTimeout(() => {
@@ -69,6 +80,8 @@ const Home = () => {
     // Step 9: Show logo at top center after expansion completes (8.2 seconds)
     const timer9 = setTimeout(() => {
       setShowTopLogo(true);
+      // Enable scrolling after animations complete
+      document.body.style.overflow = '';
     }, 8200);
 
     return () => {
@@ -215,7 +228,12 @@ const Home = () => {
 
     {/* Section 2 - Content Area */}
     <section className="section-two">
-      <div className="section-two__rectangle"></div>
+      <div className="section-two__rectangle">
+        <p className="section-two__text">
+          WE REALIZE TIMELESS <span className="section-two__highlight">DOORS</span><br />
+          AND <span className="section-two__highlight">STAIRCASES</span> <span className="section-two__lowercase">under a Roof.</span>
+        </p>
+      </div>
       <img 
         src={CircleGoing} 
         alt="" 
