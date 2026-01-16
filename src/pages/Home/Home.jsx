@@ -12,6 +12,8 @@ import Img4 from '../../assets/4.png';
 import Img5 from '../../assets/5.png';
 import Img6 from '../../assets/6.png';
 import CircleGoing from '../../assets/CircleGoing.png';
+import Frame from '../../assets/Frame.png';
+import FramedPic from '../../assets/FramedPic.png';
 import './Home.css';
 
 const Home = () => {
@@ -239,7 +241,24 @@ const Home = () => {
         alt="" 
         className="section-two__circle"
       />
-      <div className="section-two__white-box"></div>
+      <div className="section-two__white-box">
+        <div className="section-two__content">
+          <div className="section-two__left">
+            <h2 className="section-two__heading">ABOUT US</h2>
+            <h1 className="section-two__title">A&C BROTHERS</h1>
+            <p className="section-two__description">
+              At A&C Brothers, we believe your staircase should be more than just a functional element — it should be a centrepiece of your home's design. With years of experience in staircase renovations, railing installations, and custom craftsmanship, we transform ordinary staircases into stunning architectural features that reflect your style and enhance your living space.
+            </p>
+            <button className="section-two__read-more">Read More</button>
+          </div>
+          <div className="section-two__right">
+            <div className="section-two__frame-container">
+              <img src={Frame} alt="" className="section-two__frame" />
+              <img src={FramedPic} alt="Staircase" className="section-two__framed-pic" />
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </>
   );
