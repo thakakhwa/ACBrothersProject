@@ -10,7 +10,7 @@
   justify-content: center;
   background-color: #000000;
   z-index: 9999;
-  overflow: hidden;
+  overflow: visible; /* Allow images to show fully without clipping */
 }
 
 /* Main pattern - offset so inner circle is at page center */
@@ -38,7 +38,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px; /* Increased gap */
+  gap: 40px; /* Reduced by 10px */
+  transition: gap 1s ease-in-out; /* Smooth transition for gathering */
+}
+
+/* Gallery gathered state - remove gaps */
+.splash__gallery--gathered {
+  gap: 0;
 }
 
 /* Rows */
@@ -46,18 +52,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px; /* Increased gap */
+  gap: 45px; /* Reduced by 10px */
+  transition: gap 1s ease-in-out; /* Smooth transition for gathering */
 }
 
-/* Top row offset to the left */
+/* Row gathered state - remove gaps */
+.splash__gallery--gathered .splash__row {
+  gap: 0;
+}
+
+/* Top row - perfectly aligned */
 .splash__row--top {
-  transform: translateX(-50px); /* Adjusted offset */
+  transform: translateX(0); /* No offset - perfectly aligned */
   visibility: hidden; /* Hidden initially */
 }
 
-/* Bottom row offset to the right */
+/* Bottom row - perfectly aligned */
 .splash__row--bottom {
-  transform: translateX(50px); /* Adjusted offset */
+  transform: translateX(0); /* No offset - perfectly aligned */
   visibility: hidden; /* Hidden initially */
 }
 
@@ -72,10 +84,10 @@
   animation: wobble-right-row 0.8s ease-out forwards;
 }
 
-/* All grid images - same size as Splash1AddOn (464 × 275) */
+/* All grid images - larger size */
 .splash__grid-image {
-  width: 464px;
-  height: 275px;
+  width: 520px;
+  height: 308px;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -95,7 +107,7 @@
 
 .splash__side-image--right {
   visibility: hidden;
-  transform: translateX(80px); /* Initial position for wobble */
+  transform: translateX(50px); /* Initial position for wobble */
   opacity: 0; /* Start faded */
 }
 
@@ -105,10 +117,10 @@
   animation: wobble-right 0.8s ease-out forwards;
 }
 
-/* Center staircase - same size, special animation */
+/* Center staircase - larger size, special animation */
 .splash__addon {
-  width: 464px;
-  height: 275px;
+  width: 520px;
+  height: 308px;
   object-fit: cover;
   flex-shrink: 0;
   visibility: hidden;
@@ -165,15 +177,15 @@
 @keyframes wobble-left-row {
   0% { transform: translateX(calc(-100% - 40px)); visibility: hidden; } /* Start off-screen left */
   1% { visibility: visible; }
-  60% { transform: translateX(calc(-50px + 50px)); } /* Overshoot */
-  80% { transform: translateX(calc(-50px - 20px)); } /* Bounce back */
-  100% { transform: translateX(-50px); } /* Settle at final offset */
+  60% { transform: translateX(50px); } /* Overshoot right */
+  80% { transform: translateX(-20px); } /* Bounce back left */
+  100% { transform: translateX(-25px); } /* Perfectly aligned - no offset */
 }
 
 @keyframes wobble-right-row {
   0% { transform: translateX(calc(100% + 40px)); visibility: hidden; } /* Start off-screen right */
   1% { visibility: visible; }
-  60% { transform: translateX(calc(50px - 50px)); } /* Overshoot */
-  80% { transform: translateX(calc(50px + 20px)); } /* Bounce back */
-  100% { transform: translateX(50px); } /* Settle at final offset */
+  60% { transform: translateX(-50px); } /* Overshoot left */
+  80% { transform: translateX(20px); } /* Bounce back right */
+  100% { transform: translateX(25px); } /* Perfectly aligned - no offset */
 }

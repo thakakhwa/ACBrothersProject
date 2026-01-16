@@ -18,6 +18,7 @@ const Home = () => {
   const [showSideImages, setShowSideImages] = useState(false);
   const [showTopRow, setShowTopRow] = useState(false);
   const [showBottomRow, setShowBottomRow] = useState(false);
+  const [gatherPhotos, setGatherPhotos] = useState(false);
 
   useEffect(() => {
     // Step 1: Show the add-on image after 0.8 seconds
@@ -45,12 +46,18 @@ const Home = () => {
       setShowBottomRow(true);
     }, 4100);
 
+    // Step 6: Gather photos together (remove gaps) after 5.2 seconds
+    const timer6 = setTimeout(() => {
+      setGatherPhotos(true);
+    }, 5200);
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
       clearTimeout(timer4);
       clearTimeout(timer5);
+      clearTimeout(timer6);
     };
   }, []);
 
@@ -64,7 +71,7 @@ const Home = () => {
       />
       
       {/* Gallery grid */}
-      <div className="splash__gallery">
+      <div className={`splash__gallery ${gatherPhotos ? 'splash__gallery--gathered' : ''}`}>
         {/* Top row - 1, 2, 3 from left */}
         <div className={`splash__row splash__row--top ${showTopRow ? 'splash__row--animated' : ''}`}>
           <img 
