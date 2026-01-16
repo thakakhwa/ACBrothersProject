@@ -197,6 +197,31 @@
   opacity: 1;
 }
 
+/* Logo fades out when center image expands */
+.splash__logo--fade-out {
+  opacity: 0 !important;
+  transition: opacity 0.6s ease-out !important; /* Smooth fade out */
+}
+
+/* Logo at top center after expansion */
+.splash__logo-top {
+  position: fixed;
+  width: 126.41px;
+  height: 146px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+  z-index: 10000;
+  margin-top: 20px; /* Small margin from top */
+}
+
+.splash__logo-top--visible {
+  opacity: 1;
+}
+
 /* Wobble/bounce keyframes for individual side images */
 @keyframes wobble-left {
   0% { transform: translateX(-80px); opacity: 0; }
@@ -301,10 +326,10 @@
   width: 100vw !important;
   height: 100vh !important;
   object-fit: cover !important; /* Fill entire screen - no black bars */
-  z-index: 9999 !important;
+  z-index: 2 !important; /* Same level as other images */
   transform: translate(-50%, -50%) !important; /* Center it */
   transform-origin: center center !important;
-  transition: width 0.8s ease-out, height 0.8s ease-out !important; /* Same timing as fly-away */
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; /* Smooth, professional easing */
 }
 
 /* Fly away keyframes */

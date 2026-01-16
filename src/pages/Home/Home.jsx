@@ -21,6 +21,7 @@ const Home = () => {
   const [gatherPhotos, setGatherPhotos] = useState(false);
   const [compressCenter, setCompressCenter] = useState(false);
   const [expandCenter, setExpandCenter] = useState(false);
+  const [showTopLogo, setShowTopLogo] = useState(false);
 
   useEffect(() => {
     // Step 1: Show the add-on image after 0.8 seconds
@@ -63,6 +64,11 @@ const Home = () => {
       setExpandCenter(true);
     }, 7500);
 
+    // Step 9: Show logo at top center after expansion completes (8.2 seconds)
+    const timer9 = setTimeout(() => {
+      setShowTopLogo(true);
+    }, 8200);
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
@@ -72,6 +78,7 @@ const Home = () => {
       clearTimeout(timer6);
       clearTimeout(timer7);
       clearTimeout(timer8);
+      clearTimeout(timer9);
     };
   }, []);
 
@@ -150,11 +157,18 @@ const Home = () => {
         </div>
       </div>
       
-      {/* Logo - Figma Group 2147229507 */}
+      {/* Logo - Figma Group 2147229507 (center during zoom) */}
       <img 
         src={ACBLogo} 
         alt="ACBrothers" 
-        className={`splash__logo ${zoomAddOn ? 'splash__logo--visible' : ''}`}
+        className={`splash__logo ${zoomAddOn ? 'splash__logo--visible' : ''} ${expandCenter ? 'splash__logo--fade-out' : ''}`}
+      />
+
+      {/* Logo - Top center after expansion */}
+      <img 
+        src={ACBLogo} 
+        alt="ACBrothers" 
+        className={`splash__logo-top ${showTopLogo ? 'splash__logo-top--visible' : ''}`}
       />
     </div>
   );
