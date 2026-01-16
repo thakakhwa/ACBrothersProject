@@ -66,7 +66,7 @@ const Home = () => {
       {/* Gallery grid */}
       <div className="splash__gallery">
         {/* Top row - 1, 2, 3 from left */}
-        <div className="splash__row splash__row--top">
+        <div className={`splash__row splash__row--top ${showTopRow ? 'splash__row--animated' : ''}`}>
           <img 
             src={Img1} 
             alt="" 
@@ -107,7 +107,7 @@ const Home = () => {
         </div>
 
         {/* Bottom row - 6, 5, 4 from right */}
-        <div className="splash__row splash__row--bottom">
+        <div className={`splash__row splash__row--bottom ${showBottomRow ? 'splash__row--animated' : ''}`}>
           <img 
             src={Img6} 
             alt="" 

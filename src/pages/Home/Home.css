@@ -18,7 +18,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-58%, -52.5%);
+  transform: translate(-58%, -52.5%); /* Adjusted to center inner circle */
   width: auto;
   height: 90vh;
   object-fit: contain;
@@ -38,7 +38,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 40px; /* Increased gap */
 }
 
 /* Rows */
@@ -46,7 +46,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 40px; /* Increased gap */
+}
+
+/* Top row offset to the left */
+.splash__row--top {
+  transform: translateX(-50px); /* Adjusted offset */
+  visibility: hidden; /* Hidden initially */
+}
+
+/* Bottom row offset to the right */
+.splash__row--bottom {
+  transform: translateX(50px); /* Adjusted offset */
+  visibility: hidden; /* Hidden initially */
+}
+
+/* Wobble animation for entire rows */
+.splash__row--top.splash__row--animated {
+  visibility: visible;
+  animation: wobble-left-row 0.8s ease-out forwards;
+}
+
+.splash__row--bottom.splash__row--animated {
+  visibility: visible;
+  animation: wobble-right-row 0.8s ease-out forwards;
 }
 
 /* All grid images - same size as Splash1AddOn (464 × 275) */
@@ -55,49 +78,31 @@
   height: 275px;
   object-fit: cover;
   flex-shrink: 0;
-  visibility: hidden;
-  transition: transform 0.8s ease-in-out;
-}
-
-/* Top row - slide from left as a block */
-.splash__grid-image--from-top {
-  transform: translateX(-600px);
-}
-
-.splash__grid-image--from-top.splash__grid-image--visible {
-  visibility: visible;
-  transform: translateX(0);
-}
-
-/* Bottom row - slide from right as a block */
-.splash__grid-image--from-bottom {
-  transform: translateX(600px);
-}
-
-.splash__grid-image--from-bottom.splash__grid-image--visible {
-  visibility: visible;
-  transform: translateX(0);
 }
 
 /* Side images (middle row) - visible by default, slide in */
 .splash__side-image--left {
   visibility: hidden;
-  transform: translateX(-80px);
+  transform: translateX(-80px); /* Initial position for wobble */
+  opacity: 0; /* Start faded */
 }
 
 .splash__side-image--left.splash__grid-image--visible {
   visibility: visible;
-  transform: translateX(0);
+  opacity: 1;
+  animation: wobble-left 0.8s ease-out forwards;
 }
 
 .splash__side-image--right {
   visibility: hidden;
-  transform: translateX(80px);
+  transform: translateX(80px); /* Initial position for wobble */
+  opacity: 0; /* Start faded */
 }
 
 .splash__side-image--right.splash__grid-image--visible {
   visibility: visible;
-  transform: translateX(0);
+  opacity: 1;
+  animation: wobble-right 0.8s ease-out forwards;
 }
 
 /* Center staircase - same size, special animation */
@@ -139,4 +144,36 @@
 
 .splash__logo--visible {
   opacity: 1;
+}
+
+/* Wobble/bounce keyframes for individual side images */
+@keyframes wobble-left {
+  0% { transform: translateX(-80px); opacity: 0; }
+  60% { transform: translateX(20px); opacity: 1; }
+  80% { transform: translateX(-10px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes wobble-right {
+  0% { transform: translateX(80px); opacity: 0; }
+  60% { transform: translateX(-20px); opacity: 1; }
+  80% { transform: translateX(10px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Wobble/bounce keyframes for entire rows */
+@keyframes wobble-left-row {
+  0% { transform: translateX(calc(-100% - 40px)); visibility: hidden; } /* Start off-screen left */
+  1% { visibility: visible; }
+  60% { transform: translateX(calc(-50px + 50px)); } /* Overshoot */
+  80% { transform: translateX(calc(-50px - 20px)); } /* Bounce back */
+  100% { transform: translateX(-50px); } /* Settle at final offset */
+}
+
+@keyframes wobble-right-row {
+  0% { transform: translateX(calc(100% + 40px)); visibility: hidden; } /* Start off-screen right */
+  1% { visibility: visible; }
+  60% { transform: translateX(calc(50px - 50px)); } /* Overshoot */
+  80% { transform: translateX(calc(50px + 20px)); } /* Bounce back */
+  100% { transform: translateX(50px); } /* Settle at final offset */
 }
