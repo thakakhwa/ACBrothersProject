@@ -162,8 +162,10 @@
   visibility: hidden;
   opacity: 0;
   transform: scale(0.05);
+  transform-origin: center center;
   transition: opacity 0.3s ease-in-out, transform 0.9s ease-in-out, visibility 0s;
   z-index: 2;
+  position: relative;
 }
 
 .splash__addon--visible {
@@ -175,6 +177,7 @@
   visibility: visible;
   opacity: 1;
   transform: scale(1);
+  transform-origin: center center;
 }
 
 /* Logo - Figma Group 2147229507 */
@@ -227,8 +230,35 @@
 }
 
 /* ============================================
+   Compress Phase - Gather More Towards Center
+   ============================================ */
+
+/* Compress gallery - small gaps remain */
+.splash__gallery--compress {
+  gap: 2px; /* Keep small gap during compress */
+  transform: translate(-50%, -50%) scale(0.85); /* Grid shrinks slightly */
+  transition: all 0.6s ease-in-out;
+}
+
+.splash__gallery--compress .splash__row {
+  gap: 2px; /* Keep small gap during compress */
+  transition: gap 0.6s ease-in-out;
+}
+
+/* Center image shrinks during compress */
+.splash__gallery--compress .splash__addon {
+  transform: scale(0.8) !important;
+  transition: transform 0.6s ease-in-out !important;
+}
+
+/* ============================================
    Expand/Fly Away Animations
    ============================================ */
+
+/* Reset gallery transform when expanding */
+.splash__gallery--expand {
+  transform: translate(-50%, -50%) scale(1) !important;
+}
 
 /* Fly away animations - triggered when gallery has --expand class */
 .splash__gallery--expand .splash__fly-top-left {
@@ -263,13 +293,18 @@
   animation: fly-bottom-right 0.8s ease-in forwards !important;
 }
 
-/* Center image expands to fill screen */
+/* Center image expands to fill screen - pushing others away */
 .splash__gallery--expand .splash__center-expand {
-  animation: center-expand 1.2s ease-in-out forwards !important;
-  z-index: 100;
   position: fixed !important;
   left: 50% !important;
   top: 50% !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important; /* Fill entire screen - no black bars */
+  z-index: 9999 !important;
+  transform: translate(-50%, -50%) !important; /* Center it */
+  transform-origin: center center !important;
+  transition: width 0.8s ease-out, height 0.8s ease-out !important; /* Same timing as fly-away */
 }
 
 /* Fly away keyframes */

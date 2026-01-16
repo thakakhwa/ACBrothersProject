@@ -19,6 +19,7 @@ const Home = () => {
   const [showTopRow, setShowTopRow] = useState(false);
   const [showBottomRow, setShowBottomRow] = useState(false);
   const [gatherPhotos, setGatherPhotos] = useState(false);
+  const [compressCenter, setCompressCenter] = useState(false);
   const [expandCenter, setExpandCenter] = useState(false);
 
   useEffect(() => {
@@ -52,10 +53,15 @@ const Home = () => {
       setGatherPhotos(true);
     }, 5200);
 
-    // Step 7: Expand center and fly away other images after 6.5 seconds
+    // Step 7: Compress center (shrink center, tighten images) after 6.5 seconds
     const timer7 = setTimeout(() => {
-      setExpandCenter(true);
+      setCompressCenter(true);
     }, 6500);
+
+    // Step 8: EXPLODE - expand center and fly away other images after 7.5 seconds
+    const timer8 = setTimeout(() => {
+      setExpandCenter(true);
+    }, 7500);
 
     return () => {
       clearTimeout(timer1);
@@ -65,6 +71,7 @@ const Home = () => {
       clearTimeout(timer5);
       clearTimeout(timer6);
       clearTimeout(timer7);
+      clearTimeout(timer8);
     };
   }, []);
 
@@ -78,7 +85,7 @@ const Home = () => {
       />
       
       {/* Gallery grid */}
-      <div className={`splash__gallery ${gatherPhotos ? 'splash__gallery--gathered' : ''} ${expandCenter ? 'splash__gallery--expand' : ''}`}>
+      <div className={`splash__gallery ${gatherPhotos ? 'splash__gallery--gathered' : ''} ${compressCenter ? 'splash__gallery--compress' : ''} ${expandCenter ? 'splash__gallery--expand' : ''}`}>
         {/* Top row - 1, 2, 3 from left */}
         <div className={`splash__row splash__row--top ${showTopRow ? 'splash__row--animated' : ''}`}>
           <img 
