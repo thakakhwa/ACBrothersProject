@@ -39,7 +39,7 @@
   flex-direction: column;
   align-items: center;
   gap: 40px; /* Reduced by 10px */
-  transition: gap 1s ease-in-out; /* Smooth transition for gathering */
+  transition: gap 4s ease-in-out; /* Slow, smooth gathering */
 }
 
 /* Gallery gathered state - remove gaps */
@@ -53,44 +53,71 @@
   align-items: center;
   justify-content: center;
   gap: 45px; /* Reduced by 10px */
-  transition: gap 1s ease-in-out; /* Smooth transition for gathering */
+  transition: gap 4s ease-in-out; /* Slow, smooth gathering */
 }
 
 /* Row gathered state - remove gaps */
 .splash__gallery--gathered .splash__row {
   gap: 0;
+  transition: gap 4s ease-in-out !important;
 }
 
 /* Top row - offset to the left (ladder effect) */
 .splash__row--top {
   transform: translateX(-30px); /* Offset left for ladder */
   visibility: hidden; /* Hidden initially */
-  transition: transform 1s ease-in-out; /* Smooth transition when gathering */
+  transition: transform 4s ease-in-out; /* Slow, smooth gathering */
 }
 
 /* Bottom row - offset to the right (ladder effect) */
 .splash__row--bottom {
   transform: translateX(30px); /* Offset right for ladder */
   visibility: hidden; /* Hidden initially */
-  transition: transform 1s ease-in-out; /* Smooth transition when gathering */
+  transition: transform 4s ease-in-out; /* Slow, smooth gathering */
 }
 
 /* When gathered, align all rows perfectly */
 .splash__gallery--gathered .splash__row--top,
 .splash__gallery--gathered .splash__row--middle,
 .splash__gallery--gathered .splash__row--bottom {
-  transform: translateX(0) !important; /* Perfect alignment - all columns align */
+  animation: gather-align 4s ease-in-out forwards !important; /* Smooth animation to align */
+}
+
+/* Smooth alignment animation for top row */
+@keyframes gather-align-top {
+  0% { transform: translateX(-30px); }
+  100% { transform: translateX(0); }
+}
+
+/* Smooth alignment animation for bottom row */
+@keyframes gather-align-bottom {
+  0% { transform: translateX(30px); }
+  100% { transform: translateX(0); }
+}
+
+.splash__gallery--gathered .splash__row--top {
+  animation: gather-align-top 4s ease-in-out forwards !important;
+}
+
+.splash__gallery--gathered .splash__row--bottom {
+  animation: gather-align-bottom 4s ease-in-out forwards !important;
+}
+
+.splash__gallery--gathered .splash__row--middle {
+  animation: none !important;
 }
 
 /* Wobble animation for entire rows */
 .splash__row--top.splash__row--animated {
   visibility: visible;
   animation: wobble-left-row 0.8s ease-out forwards;
+  transition: transform 4s ease-in-out, gap 4s ease-in-out;
 }
 
 .splash__row--bottom.splash__row--animated {
   visibility: visible;
   animation: wobble-right-row 0.8s ease-out forwards;
+  transition: transform 4s ease-in-out, gap 4s ease-in-out;
 }
 
 /* All grid images - larger size */
