@@ -33,8 +33,9 @@ const Home = () => {
   const [compressCenter, setCompressCenter] = useState(false);
   const [expandCenter, setExpandCenter] = useState(false);
   const [showTopLogo, setShowTopLogo] = useState(false);
-  const [activeService, setActiveService] = useState(1); // For accordion, default second item open
+  const [activeService, setActiveService] = useState(null); // For accordion, all closed by default
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const projects = [
     { img: Img1, title: 'Residential Installation Project- Doors and stairs' },
@@ -61,18 +62,25 @@ const Home = () => {
     setScrollPosition(scrollPercent);
   };
 
-  // Disable scrolling during animations, enable after completion
+  // Animation sequence
   useEffect(() => {
+    // Scroll to top on mount/refresh
+    window.scrollTo(0, 0);
+    
+    // Reset all states on mount (for refresh)
+    setShowAddOn(false);
+    setZoomAddOn(false);
+    setShowSideImages(false);
+    setShowTopRow(false);
+    setShowBottomRow(false);
+    setGatherPhotos(false);
+    setCompressCenter(false);
+    setExpandCenter(false);
+    setShowTopLogo(false);
+    
     // Disable scrolling initially
     document.body.style.overflow = 'hidden';
     
-    return () => {
-      // Re-enable scrolling on cleanup (if component unmounts)
-      document.body.style.overflow = '';
-    };
-  }, []);
-
-  useEffect(() => {
     // Step 1: Show the add-on image after 0.8 seconds
     const timer1 = setTimeout(() => {
       setShowAddOn(true);
@@ -130,6 +138,8 @@ const Home = () => {
       clearTimeout(timer7);
       clearTimeout(timer8);
       clearTimeout(timer9);
+      // Re-enable scrolling on cleanup
+      document.body.style.overflow = '';
     };
   }, []);
 
@@ -224,11 +234,68 @@ const Home = () => {
       />
 
       {/* Burger Menu - Top left after expansion */}
-      <div className={`splash__burger-menu ${showTopLogo ? 'splash__burger-menu--visible' : ''}`}>
+      <div 
+        className={`splash__burger-menu ${showTopLogo ? 'splash__burger-menu--visible' : ''}`}
+        onClick={() => setMenuOpen(true)}
+      >
         <div className="splash__burger-bar splash__burger-bar--1"></div>
         <div className="splash__burger-bar splash__burger-bar--2"></div>
         <div className="splash__burger-bar splash__burger-bar--3"></div>
       </div>
+
+      {/* Sidebar Menu */}
+      <div className={`sidebar ${menuOpen ? 'sidebar--open' : ''}`}>
+        <div className="sidebar__close" onClick={() => setMenuOpen(false)}>
+          <span></span>
+          <span></span>
+        </div>
+        
+        <nav className="sidebar__nav">
+          <a href="#" className="sidebar__link">HOME</a>
+          <a href="#" className="sidebar__link">ABOUT US</a>
+          <a href="#" className="sidebar__link">SERVICES</a>
+          <a href="#" className="sidebar__link">OUR PROJECTS</a>
+          <a href="#" className="sidebar__link">SERVICE AREAS</a>
+          <a href="#" className="sidebar__link">GALLERY</a>
+          <a href="#" className="sidebar__link">CONTACT US</a>
+        </nav>
+
+        <div className="sidebar__divider"></div>
+
+        <div className="sidebar__contact">
+          <div className="sidebar__contact-item">
+            <span className="sidebar__contact-label">Call Us</span>
+            <a href="tel:+13657778010" className="sidebar__contact-value">+1 365-777-8010</a>
+          </div>
+          <div className="sidebar__contact-item">
+            <span className="sidebar__contact-label">WhatsApp</span>
+            <a href="https://wa.me/13657778010" className="sidebar__contact-value">+1 365-777-8010</a>
+          </div>
+          <div className="sidebar__contact-item">
+            <span className="sidebar__contact-label">Email</span>
+            <a href="mailto:info@acstairs.ca" className="sidebar__contact-value">info@acstairs.ca</a>
+          </div>
+        </div>
+
+        <div className="sidebar__social">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="sidebar__social-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="sidebar__social-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      {/* Sidebar Overlay */}
+      <div 
+        className={`sidebar__overlay ${menuOpen ? 'sidebar__overlay--visible' : ''}`}
+        onClick={() => setMenuOpen(false)}
+      ></div>
 
       {/* Get Quote Button - Top right after expansion */}
       <button className={`splash__get-quote ${showTopLogo ? 'splash__get-quote--visible' : ''}`}>
