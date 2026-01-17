@@ -17,6 +17,10 @@ import FramedPic from '../../assets/FramedPic.png';
 import AguyHoldingIdk from '../../assets/AguyHoldingIdk.png';
 import Arrow from '../../assets/Arrow.png';
 import InspectingTheFloor from '../../assets/InspectingTheFloor.png';
+import EditIcon from '../../assets/Edit.png';
+import SecurityIcon from '../../assets/Security.png';
+import AchievementsIcon from '../../assets/Achievments.png';
+import BusIcon from '../../assets/Bus.png';
 import './Home.css';
 
 const Home = () => {
@@ -417,28 +421,28 @@ const Home = () => {
         <div className="section-six__features-grid">
           <div className="section-six__feature">
             <div className="section-six__feature-icon">
-              <span>🏠</span>
+              <img src={EditIcon} alt="Built for Real Homes" />
             </div>
             <h3 className="section-six__feature-title">Built for Real Homes</h3>
             <p className="section-six__feature-desc">Thoughtfully crafted solutions designed to fit real homes and everyday living.</p>
           </div>
           <div className="section-six__feature">
             <div className="section-six__feature-icon">
-              <span>💎</span>
+              <img src={SecurityIcon} alt="Work You Can Trust" />
             </div>
             <h3 className="section-six__feature-title">Work You Can Trust</h3>
             <p className="section-six__feature-desc">Reliable workmanship delivered with precision, care, and attention to detail.</p>
           </div>
           <div className="section-six__feature">
             <div className="section-six__feature-icon">
-              <span>⭐</span>
+              <img src={AchievementsIcon} alt="Service Excellence" />
             </div>
             <h3 className="section-six__feature-title">Service Excellence</h3>
             <p className="section-six__feature-desc">Dedicated support and professional execution from start to completion.</p>
           </div>
           <div className="section-six__feature">
             <div className="section-six__feature-icon">
-              <span>📍</span>
+              <img src={BusIcon} alt="We Reach You Anywhere" />
             </div>
             <h3 className="section-six__feature-title">We Reach You Anywhere</h3>
             <p className="section-six__feature-desc">Seamless delivery and installation wherever your project is located.</p>
@@ -452,6 +456,12 @@ const Home = () => {
           <img src={InspectingTheFloor} alt="Inspecting the floor" />
         </div>
         <div className="section-six__cta-content">
+          {/* Rotating Circle */}
+          <img 
+            src={CircleGoing} 
+            alt="" 
+            className="section-six__circle"
+          />
           <div className="section-six__cta-card">
             <span className="section-six__cta-label">START YOUR PROJECT TODAY</span>
             <h2 className="section-six__cta-title">You tell us your vision.<br />We will provide the solution.</h2>

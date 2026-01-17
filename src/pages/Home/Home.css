@@ -1895,7 +1895,6 @@
 .section-six {
   width: 100%;
   height: 100vh;
-  max-height: 900px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -1904,23 +1903,23 @@
 /* Features Section */
 .section-six__features {
   background-color: #DDD3B6;
-  padding: 50px 100px 80px 100px;
+  padding: 20px 100px 40px 100px;
   text-align: center;
   flex-shrink: 0;
 }
 
 .section-six__features-title {
   font-family: 'Mourgen', serif;
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 400;
   color: #142C22;
-  margin: 0 0 40px 0;
+  margin: 0 0 15px 0;
 }
 
 .section-six__features-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  gap: 20px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -1936,40 +1935,82 @@
 }
 
 .section-six__feature-icon {
-  font-size: 32px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-six__feature-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .section-six__feature-title {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 500;
   color: #142C22;
-  margin: 0 0 12px 0;
+  margin: 0 0 4px 0;
 }
 
 .section-six__feature-desc {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 400;
   color: #495057;
-  line-height: 1.6;
+  line-height: 1.4;
   margin: 0;
+}
+
+/* Rotating Circle */
+.section-six__circle {
+  position: absolute;
+  right: -170px;
+  top: 20%;
+  width: 400px;
+  height: 400px;
+  transform: translateY(-50%);
+  z-index: 10;
+  opacity: 0.9;
+  filter: brightness(0) invert(1);
+  animation: rotate-circle-reverse 6s ease-in-out infinite;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+@keyframes rotate-circle-reverse {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  33.33% {
+    transform: translateY(-50%) rotate(-126deg);
+  }
+  66.67% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(0deg);
+  }
 }
 
 /* CTA Section */
 .section-six__cta {
   display: flex;
   flex: 1;
-  margin-top: -40px;
+  margin-top: 0;
   position: relative;
   z-index: 2;
+  min-height: 0;
 }
 
 .section-six__cta-image {
   flex: 0 0 55%;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  margin-top: -50px;
+  height: calc(100% + 50px);
 }
 
 .section-six__cta-image img {
