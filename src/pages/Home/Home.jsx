@@ -64,7 +64,14 @@ const Home = () => {
 
   // Animation sequence
   useEffect(() => {
-    // Scroll to top on mount/refresh
+    // Disable browser scroll restoration
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    
+    // Force scroll to top immediately on mount/refresh
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     window.scrollTo(0, 0);
     
     // Reset all states on mount (for refresh)
