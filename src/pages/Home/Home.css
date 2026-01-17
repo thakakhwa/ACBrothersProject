@@ -341,44 +341,30 @@
 /* Scroll Down Arrow Indicator */
 .splash__scroll-arrow {
   position: absolute;
-  bottom: 30px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
-  color: #ffffff;
+  width: 50px;
+  height: auto;
   opacity: 0;
   transition: opacity 0.8s ease-in;
   z-index: 10000;
   cursor: pointer;
+  animation: bounce-arrow 1.5s ease-in-out infinite;
+  animation-play-state: paused;
 }
 
 .splash__scroll-arrow--visible {
   opacity: 1;
+  animation-play-state: running;
 }
 
-.splash__scroll-arrow svg .scroll-line {
-  transform-origin: 5px 35px; /* Bottom of the line */
-  animation: shorten-line 1s infinite;
-}
-
-.splash__scroll-arrow svg .scroll-arrow {
-  animation: move-arrow-up 1s infinite;
-}
-
-@keyframes shorten-line {
+@keyframes bounce-arrow {
   0%, 100% {
-    transform: scaleY(1);
+    transform: translateX(-50%) translateY(0);
   }
   50% {
-    transform: scaleY(0.5); /* Line gets shorter from bottom */
-  }
-}
-
-@keyframes move-arrow-up {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px); /* Arrow moves up towards the line */
+    transform: translateX(-50%) translateY(10px);
   }
 }
 
@@ -853,4 +839,1349 @@
   z-index: 2;
   border-radius: 4px;
   margin-top: 20px;
+}
+
+/* ============================================
+   Responsive Styles for Larger Monitors
+   ============================================ */
+
+/* Large monitors (1600px and up) */
+@media screen and (min-width: 1600px) {
+  .splash__grid-image {
+    width: 600px;
+    height: 355px;
+  }
+
+  .splash__addon {
+    width: 600px;
+    height: 355px;
+  }
+
+  .splash__row {
+    gap: 55px;
+  }
+
+  .splash__gallery {
+    gap: 50px;
+  }
+
+  .splash__gallery--gathered {
+    gap: 0 !important;
+  }
+
+  .splash__gallery--gathered .splash__row {
+    gap: 0 !important;
+  }
+
+  .splash__gallery--compress {
+    gap: 2px !important;
+  }
+
+  .splash__gallery--compress .splash__row {
+    gap: 2px !important;
+  }
+
+  .splash__logo-center {
+    width: 950px;
+    height: 178px;
+  }
+
+  .section-two__rectangle {
+    width: 100%;
+    max-width: 1600px;
+    height: 380px;
+  }
+
+  .section-two__text {
+    width: 850px;
+    font-size: 48px;
+    height: auto;
+  }
+
+  .section-two__white-box {
+    width: 100%;
+    max-width: 1600px;
+    height: 850px;
+    max-height: 850px;
+    min-height: 850px;
+    padding: 80px 100px;
+  }
+
+  .section-two__content {
+    max-width: 1440px;
+    gap: 100px;
+  }
+
+  .section-two__title {
+    font-size: 72px;
+  }
+
+  .section-two__description {
+    font-size: 18px;
+    max-width: 550px;
+  }
+
+  .section-two__circle {
+    width: 600px;
+    height: 600px;
+    top: 320px;
+  }
+
+  .section-two__frame-container {
+    max-width: 680px;
+  }
+}
+
+/* Full HD monitors (1920px and up) */
+@media screen and (min-width: 1920px) {
+  .splash__grid-image {
+    width: 700px;
+    height: 415px;
+  }
+
+  .splash__addon {
+    width: 700px;
+    height: 415px;
+  }
+
+  .splash__row {
+    gap: 65px;
+  }
+
+  .splash__gallery {
+    gap: 60px;
+  }
+
+  .splash__gallery--gathered {
+    gap: 0 !important;
+  }
+
+  .splash__gallery--gathered .splash__row {
+    gap: 0 !important;
+  }
+
+  .splash__gallery--compress {
+    gap: 2px !important;
+  }
+
+  .splash__gallery--compress .splash__row {
+    gap: 2px !important;
+  }
+
+  .splash__pattern {
+    height: 95vh;
+  }
+
+  .splash__logo-center {
+    width: 1100px;
+    height: 206px;
+  }
+
+  .section-two__rectangle {
+    max-width: 1920px;
+    height: 420px;
+  }
+
+  .section-two__text {
+    width: 950px;
+    font-size: 54px;
+  }
+
+  .section-two__white-box {
+    max-width: 1920px;
+    height: 920px;
+    max-height: 920px;
+    min-height: 920px;
+    padding: 100px 120px;
+  }
+
+  .section-two__content {
+    max-width: 1680px;
+    gap: 120px;
+  }
+
+  .section-two__title {
+    font-size: 80px;
+  }
+
+  .section-two__heading {
+    font-size: 28px;
+  }
+
+  .section-two__description {
+    font-size: 18px;
+    max-width: 600px;
+  }
+
+  .section-two__read-more {
+    font-size: 16px;
+    padding: 14px 40px;
+  }
+
+  .section-two__circle {
+    width: 680px;
+    height: 680px;
+    top: 350px;
+  }
+
+  .section-two__frame-container {
+    max-width: 750px;
+  }
+}
+
+/* QHD/2K monitors (2560px and up) */
+@media screen and (min-width: 2560px) {
+  .splash__grid-image {
+    width: 900px;
+    height: 533px;
+  }
+
+  .splash__addon {
+    width: 900px;
+    height: 533px;
+  }
+
+  .splash__row {
+    gap: 80px;
+  }
+
+  .splash__gallery {
+    gap: 75px;
+  }
+
+  .splash__gallery--gathered {
+    gap: 0 !important;
+  }
+
+  .splash__gallery--gathered .splash__row {
+    gap: 0 !important;
+  }
+
+  .splash__gallery--compress {
+    gap: 2px !important;
+  }
+
+  .splash__gallery--compress .splash__row {
+    gap: 2px !important;
+  }
+
+  .splash__logo {
+    width: 280px;
+    height: 323px;
+  }
+
+  .splash__logo-center {
+    width: 1400px;
+    height: 263px;
+  }
+
+  .splash__logo-top {
+    width: 180px;
+    height: 208px;
+    margin-top: 30px;
+  }
+
+  .splash__burger-menu {
+    top: 60px;
+    left: 60px;
+    gap: 8px;
+  }
+
+  .splash__burger-bar--1 {
+    width: 55px;
+  }
+
+  .splash__burger-bar--2 {
+    width: 43px;
+  }
+
+  .splash__burger-bar--3 {
+    width: 28px;
+  }
+
+  .splash__get-quote {
+    top: 60px;
+    right: 60px;
+    padding: 12px 32px;
+    font-size: 16px;
+  }
+
+  .section-two__rectangle {
+    max-width: 2560px;
+    height: 500px;
+  }
+
+  .section-two__text {
+    width: 1200px;
+    font-size: 68px;
+  }
+
+  .section-two__highlight {
+    padding: 6px 28px;
+    border-radius: 8px;
+  }
+
+  .section-two__white-box {
+    max-width: 2560px;
+    height: 1100px;
+    max-height: 1100px;
+    min-height: 1100px;
+    padding: 120px 160px;
+  }
+
+  .section-two__content {
+    max-width: 2200px;
+    gap: 160px;
+  }
+
+  .section-two__title {
+    font-size: 96px;
+  }
+
+  .section-two__heading {
+    font-size: 32px;
+    letter-spacing: 3px;
+  }
+
+  .section-two__description {
+    font-size: 20px;
+    max-width: 700px;
+    line-height: 1.7;
+  }
+
+  .section-two__read-more {
+    font-size: 18px;
+    padding: 16px 48px;
+  }
+
+  .section-two__circle {
+    width: 850px;
+    height: 850px;
+    top: 420px;
+  }
+
+  .section-two__frame-container {
+    max-width: 950px;
+  }
+
+  .splash__scroll-arrow {
+    bottom: 190px;
+    width: 70px;
+  }
+}
+
+/* ============================================
+   Section Three - Our Process
+   ============================================ */
+
+.section-three {
+  position: relative;
+  width: 100%;
+  background-color: #F8F7F2;
+  padding: 80px 100px 60px 100px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.section-three__container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.section-three__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.section-three__heading {
+  font-family: 'Mourgen', serif;
+  font-size: 37px;
+  font-weight: 400;
+  color: #142C22;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  margin-left: 20px;
+  line-height: 1.1;
+}
+
+.section-three__watermark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  margin-top: -90px;
+  margin-right: -20px;
+}
+
+.section-three__watermark span {
+  font-family: 'Mourgen', serif;
+  font-size: 37px;
+  font-weight: 400;
+  color: #142C22;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.15;
+}
+
+.section-three__text {
+  font-family: 'Mourgen', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #142C22;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.9;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-left: 40px;
+}
+
+.section-three__highlight {
+  display: inline;
+  background-color: #142C22;
+  color: #F5F5DC;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+/* Topographic pattern background */
+.section-three__topo-pattern {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 45%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 600'%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,80 Q50,120 150,90 Q250,60 350,100 Q450,140 550,100'/%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,130 Q50,170 150,140 Q250,110 350,150 Q450,190 550,150'/%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,180 Q50,220 150,190 Q250,160 350,200 Q450,240 550,200'/%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,230 Q50,270 150,240 Q250,210 350,250 Q450,290 550,250'/%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,280 Q50,320 150,290 Q250,260 350,300 Q450,340 550,300'/%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,330 Q50,370 150,340 Q250,310 350,350 Q450,390 550,350'/%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,380 Q50,420 150,390 Q250,360 350,400 Q450,440 550,400'/%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,430 Q50,470 150,440 Q250,410 350,450 Q450,490 550,450'/%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,480 Q50,520 150,490 Q250,460 350,500 Q450,540 550,500'/%3E%3Cpath fill='none' stroke='%23E0DDD3' stroke-width='1.2' d='M-50,530 Q50,570 150,540 Q250,510 350,550 Q450,590 550,550'/%3E%3C/svg%3E");
+  background-size: 500px 600px;
+  background-repeat: repeat-y;
+  background-position: left center;
+  opacity: 0.8;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Responsive styles for Section Three */
+@media screen and (max-width: 1024px) {
+  .section-three {
+    padding: 60px 30px;
+  }
+
+  .section-three__header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .section-three__watermark {
+    align-items: flex-start;
+  }
+
+  .section-three__heading {
+    font-size: 32px;
+  }
+
+  .section-three__watermark span {
+    font-size: 36px;
+  }
+
+  .section-three__text {
+    font-size: 18px;
+    padding-left: 0;
+  }
+
+  .section-three__topo-pattern {
+    width: 100%;
+    opacity: 0.4;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .section-three {
+    padding: 100px 120px;
+  }
+
+  .section-three__heading {
+    font-size: 48px;
+  }
+
+  .section-three__watermark span {
+    font-size: 66px;
+  }
+
+  .section-three__text {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .section-three {
+    padding: 120px 140px;
+  }
+
+  .section-three__container {
+    max-width: 1680px;
+  }
+
+  .section-three__heading {
+    font-size: 52px;
+  }
+
+  .section-three__watermark span {
+    font-size: 72px;
+  }
+
+  .section-three__text {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .section-three {
+    padding: 140px 180px;
+  }
+
+  .section-three__container {
+    max-width: 2200px;
+  }
+
+  .section-three__heading {
+    font-size: 60px;
+  }
+
+  .section-three__watermark span {
+    font-size: 86px;
+  }
+
+  .section-three__text {
+    font-size: 36px;
+  }
+
+  .section-three__highlight {
+    padding: 6px 16px;
+  }
+}
+
+/* ============================================
+   Section Four - Our Services
+   ============================================ */
+
+.section-four {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  max-height: 800px;
+  background-color: #142C22;
+  margin: 0;
+  margin-top: 1px;
+  padding: 0;
+}
+
+.section-four__image {
+  flex: 0 0 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-four__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.section-four__content {
+  flex: 1;
+  background-color: #142C22;
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-four__label {
+  font-family: 'Mourgen', serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #DDD3B6;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.section-four__title {
+  font-family: 'Mourgen', serif;
+  font-size: 42px;
+  font-weight: 400;
+  color: #DDD3B6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.15;
+  margin: 0 0 50px 0;
+}
+
+.section-four__accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-four__item {
+  border-top: 1px solid rgba(221, 211, 182, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.section-four__item:last-child {
+  border-bottom: 1px solid rgba(221, 211, 182, 0.3);
+}
+
+.section-four__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #DDD3B6;
+}
+
+.section-four__icon {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(221, 211, 182, 0.5);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.section-four__icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 2px;
+  background: #DDD3B6;
+  transform: translate(-50%, -50%);
+}
+
+.section-four__icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 12px;
+  background: #DDD3B6;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+.section-four__item--active .section-four__icon::after {
+  opacity: 0;
+}
+
+.section-four__item-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.section-four__item--active .section-four__item-body {
+  max-height: 200px;
+  opacity: 1;
+  transition: max-height 0.4s ease-in, opacity 0.3s ease 0.1s;
+}
+
+.section-four__item-content {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(221, 211, 182, 0.8);
+  line-height: 1.6;
+  margin: 0;
+  padding-bottom: 20px;
+  max-width: 500px;
+}
+
+/* Responsive styles for Section Four */
+@media screen and (max-width: 1024px) {
+  .section-four {
+    flex-direction: column;
+  }
+
+  .section-four__image {
+    flex: none;
+    height: 400px;
+  }
+
+  .section-four__content {
+    padding: 60px 30px;
+  }
+
+  .section-four__title {
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .section-four {
+    max-height: 850px;
+  }
+
+  .section-four__content {
+    padding: 60px 80px;
+  }
+
+  .section-four__title {
+    font-size: 46px;
+    margin-bottom: 40px;
+  }
+
+  .section-four__item-header {
+    font-size: 17px;
+    padding: 18px 0;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .section-four {
+    max-height: 900px;
+  }
+
+  .section-four__content {
+    padding: 80px 100px;
+  }
+
+  .section-four__title {
+    font-size: 50px;
+    margin-bottom: 50px;
+  }
+
+  .section-four__label {
+    font-size: 15px;
+  }
+
+  .section-four__item-header {
+    font-size: 18px;
+    padding: 22px 0;
+  }
+
+  .section-four__item-content {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .section-four {
+    max-height: 1000px;
+  }
+
+  .section-four__content {
+    padding: 100px 140px;
+  }
+
+  .section-four__title {
+    font-size: 58px;
+    margin-bottom: 60px;
+  }
+
+  .section-four__label {
+    font-size: 17px;
+  }
+
+  .section-four__item-header {
+    font-size: 22px;
+    padding: 26px 0;
+  }
+
+  .section-four__item-content {
+    font-size: 17px;
+    max-width: 600px;
+  }
+
+  .section-four__icon {
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+  }
+}
+
+/* ============================================
+   Section Five - Our Projects
+   ============================================ */
+
+.section-five {
+  width: 100%;
+  height: 100vh;
+  max-height: 900px;
+  background-color: #F8F7F2;
+  padding: 60px 0 40px 100px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.section-five__header {
+  margin-bottom: 30px;
+  max-width: 900px;
+  flex-shrink: 0;
+  padding-right: 100px;
+}
+
+.section-five__title {
+  font-family: 'Mourgen', serif;
+  font-size: 37px;
+  font-weight: 400;
+  color: #142C22;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 130%;
+  margin: 0 0 20px 0;
+  white-space: nowrap;
+}
+
+.section-five__subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #495057;
+  letter-spacing: 0;
+  line-height: 30px;
+  margin: 0;
+}
+
+.section-five__carousel {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.section-five__carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.section-five__card {
+  flex: 0 0 auto;
+  width: 380px;
+}
+
+.section-five__card-image {
+  width: 100%;
+  height: 45vh;
+  max-height: 380px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.section-five__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.section-five__card:hover .section-five__card-image img {
+  transform: scale(1.05);
+}
+
+.section-five__card-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #142C22;
+  font-style: italic;
+  margin: 0;
+}
+
+.section-five__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-right: 100px;
+  flex-shrink: 0;
+}
+
+.section-five__progress {
+  flex: 1;
+  height: 2px;
+  background-color: #E0DDD3;
+  margin-right: 40px;
+  max-width: 400px;
+}
+
+.section-five__progress-bar {
+  height: 100%;
+  background-color: #142C22;
+  transition: width 0.3s ease;
+}
+
+.section-five__arrows {
+  display: flex;
+  gap: 12px;
+}
+
+.section-five__arrow {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #142C22;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.section-five__arrow span {
+  font-size: 20px;
+  color: #142C22;
+  line-height: 1;
+}
+
+.section-five__arrow:hover {
+  background-color: #142C22;
+}
+
+.section-five__arrow:hover span {
+  color: #F8F7F2;
+}
+
+/* Responsive styles for Section Five */
+@media screen and (max-width: 1024px) {
+  .section-five {
+    padding: 60px 0 40px 30px;
+  }
+
+  .section-five__title {
+    font-size: 32px;
+  }
+
+  .section-five__card {
+    width: 300px;
+  }
+
+  .section-five__card-image {
+    height: 340px;
+  }
+
+  .section-five__controls {
+    padding-right: 30px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .section-five {
+    padding: 100px 0 80px 120px;
+  }
+
+  .section-five__title {
+    font-size: 48px;
+  }
+
+  .section-five__card {
+    width: 420px;
+  }
+
+  .section-five__card-image {
+    height: 480px;
+  }
+
+  .section-five__controls {
+    padding-right: 120px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .section-five {
+    padding: 120px 0 100px 140px;
+  }
+
+  .section-five__title {
+    font-size: 52px;
+  }
+
+  .section-five__subtitle {
+    font-size: 18px;
+  }
+
+  .section-five__card {
+    width: 460px;
+  }
+
+  .section-five__card-image {
+    height: 520px;
+  }
+
+  .section-five__controls {
+    padding-right: 140px;
+  }
+
+  .section-five__progress {
+    max-width: 500px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .section-five {
+    padding: 160px 0 120px 180px;
+  }
+
+  .section-five__title {
+    font-size: 60px;
+  }
+
+  .section-five__subtitle {
+    font-size: 20px;
+    max-width: 900px;
+  }
+
+  .section-five__card {
+    width: 550px;
+    gap: 40px;
+  }
+
+  .section-five__card-image {
+    height: 620px;
+  }
+
+  .section-five__card-title {
+    font-size: 16px;
+  }
+
+  .section-five__controls {
+    padding-right: 180px;
+    margin-top: 60px;
+  }
+
+  .section-five__progress {
+    max-width: 600px;
+  }
+
+  .section-five__arrow {
+    width: 50px;
+    height: 50px;
+  }
+
+  .section-five__arrow span {
+    font-size: 24px;
+  }
+}
+
+/* ============================================
+   Section Six - Hassle-Free & CTA
+   ============================================ */
+
+.section-six {
+  width: 100%;
+  height: 100vh;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Features Section */
+.section-six__features {
+  background-color: #DDD3B6;
+  padding: 50px 100px 80px 100px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.section-six__features-title {
+  font-family: 'Mourgen', serif;
+  font-size: 42px;
+  font-weight: 400;
+  color: #142C22;
+  margin: 0 0 40px 0;
+}
+
+.section-six__features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-six__feature {
+  text-align: center;
+  padding: 0 20px;
+  border-left: 1px solid rgba(20, 44, 34, 0.2);
+}
+
+.section-six__feature:first-child {
+  border-left: none;
+}
+
+.section-six__feature-icon {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.section-six__feature-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #142C22;
+  margin: 0 0 12px 0;
+}
+
+.section-six__feature-desc {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #495057;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* CTA Section */
+.section-six__cta {
+  display: flex;
+  flex: 1;
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-six__cta-image {
+  flex: 0 0 55%;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-six__cta-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section-six__cta-content {
+  flex: 1;
+  background-color: #142C22;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px;
+  position: relative;
+}
+
+.section-six__cta-card {
+  background-color: #ffffff;
+  padding: 40px 35px;
+  max-width: 380px;
+  position: relative;
+  z-index: 2;
+  margin-left: -80px;
+}
+
+.section-six__cta-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #142C22;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.section-six__cta-title {
+  font-family: 'Mourgen', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #142C22;
+  line-height: 1.3;
+  margin: 0 0 25px 0;
+}
+
+.section-six__cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #142C22;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.section-six__cta-button:hover {
+  background-color: #0f1f1a;
+}
+
+.section-six__cta-arrow {
+  font-size: 18px;
+}
+
+/* Responsive styles for Section Six */
+@media screen and (max-width: 1024px) {
+  .section-six__features {
+    padding: 60px 30px;
+  }
+
+  .section-six__features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .section-six__feature {
+    border-left: none;
+    border-top: 1px solid rgba(20, 44, 34, 0.2);
+    padding-top: 30px;
+  }
+
+  .section-six__feature:first-child,
+  .section-six__feature:nth-child(2) {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .section-six__cta {
+    flex-direction: column;
+  }
+
+  .section-six__cta-image {
+    flex: none;
+    height: 350px;
+  }
+
+  .section-six__cta-content {
+    padding: 40px 30px;
+  }
+
+  .section-six__cta-card {
+    padding: 40px 30px;
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .section-six__features {
+    padding: 100px 120px;
+  }
+
+  .section-six__features-title {
+    font-size: 48px;
+  }
+
+  .section-six__cta {
+    min-height: 600px;
+  }
+
+  .section-six__cta-title {
+    font-size: 36px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .section-six__features {
+    padding: 120px 140px;
+  }
+
+  .section-six__features-title {
+    font-size: 52px;
+    margin-bottom: 80px;
+  }
+
+  .section-six__feature-title {
+    font-size: 18px;
+  }
+
+  .section-six__feature-desc {
+    font-size: 15px;
+  }
+
+  .section-six__cta {
+    min-height: 700px;
+  }
+
+  .section-six__cta-card {
+    padding: 60px 50px;
+    max-width: 450px;
+  }
+
+  .section-six__cta-title {
+    font-size: 40px;
+  }
+
+  .section-six__cta-button {
+    font-size: 16px;
+    padding: 18px 36px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .section-six__features {
+    padding: 160px 180px;
+  }
+
+  .section-six__features-title {
+    font-size: 60px;
+  }
+
+  .section-six__features-grid {
+    gap: 60px;
+    max-width: 1800px;
+  }
+
+  .section-six__feature-icon {
+    font-size: 40px;
+  }
+
+  .section-six__feature-title {
+    font-size: 20px;
+  }
+
+  .section-six__feature-desc {
+    font-size: 17px;
+  }
+
+  .section-six__cta {
+    min-height: 800px;
+  }
+
+  .section-six__cta-card {
+    padding: 80px 60px;
+    max-width: 550px;
+  }
+
+  .section-six__cta-label {
+    font-size: 14px;
+  }
+
+  .section-six__cta-title {
+    font-size: 48px;
+  }
+
+  .section-six__cta-button {
+    font-size: 18px;
+    padding: 20px 42px;
+  }
 }

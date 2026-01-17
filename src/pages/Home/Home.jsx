@@ -15,6 +15,8 @@ import CircleGoing from '../../assets/CircleGoing.png';
 import Frame from '../../assets/Frame.png';
 import FramedPic from '../../assets/FramedPic.png';
 import AguyHoldingIdk from '../../assets/AguyHoldingIdk.png';
+import Arrow from '../../assets/Arrow.png';
+import InspectingTheFloor from '../../assets/InspectingTheFloor.png';
 import './Home.css';
 
 const Home = () => {
@@ -27,6 +29,33 @@ const Home = () => {
   const [compressCenter, setCompressCenter] = useState(false);
   const [expandCenter, setExpandCenter] = useState(false);
   const [showTopLogo, setShowTopLogo] = useState(false);
+  const [activeService, setActiveService] = useState(1); // For accordion, default second item open
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const projects = [
+    { img: Img1, title: 'Residential Installation Project- Doors and stairs' },
+    { img: Img2, title: 'Residential Installation Project- Doors and stairs' },
+    { img: Img3, title: 'Residential Installation Project- Doors and stairs' },
+    { img: Img4, title: 'Residential Installation Project- Doors and stairs' },
+    { img: Img5, title: 'Residential Installation Project- Doors and stairs' },
+    { img: Img6, title: 'Residential Installation Project- Doors and stairs' },
+  ];
+
+  const scrollCarousel = (direction) => {
+    const container = document.querySelector('.section-five__carousel');
+    const scrollAmount = 400;
+    if (direction === 'left') {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  const handleCarouselScroll = (e) => {
+    const container = e.target;
+    const scrollPercent = (container.scrollLeft / (container.scrollWidth - container.clientWidth)) * 100;
+    setScrollPosition(scrollPercent);
+  };
 
   // Disable scrolling during animations, enable after completion
   useEffect(() => {
@@ -210,22 +239,11 @@ const Home = () => {
       />
 
       {/* Scroll Down Arrow - Bottom center after expansion */}
-      <div className={`splash__scroll-arrow ${showTopLogo ? 'splash__scroll-arrow--visible' : ''}`}>
-        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <mask id="mask0_arrow" style={{maskType: 'alpha'}} maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="50">
-            <rect width="50" height="50" fill="url(#pattern0_arrow)"/>
-          </mask>
-          <g mask="url(#mask0_arrow)">
-            <rect width="50" height="48" fill="#DDD3B6"/>
-          </g>
-          <defs>
-            <pattern id="pattern0_arrow" patternContentUnits="objectBoundingBox" width="1" height="1">
-              <use xlinkHref="#image0_arrow" transform="translate(0.00199203) scale(0.000996016)"/>
-            </pattern>
-            <image id="image0_arrow" width="1000" height="1004" preserveAspectRatio="none" xlinkHref="data:image/png;base64,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4A4CBAjsFxDQ989ABQQIECBAgAABAtUF9EeAAIEDAgL6ASS3ECBAgAABAgQIEIgsoDYCBGoICOg15qgLAgQIECBAgAABArMErEuAwCIBAX0RtG0IECBAgAABAgQIEHgm4BoBAh8CAvqHhL8JECBAgAABAgQIEKgnoCMCiQQE9ETDUioBAgQIECBAgAABArEEVENgpICAPlLTWgQIECBAgAABAgQIEBgnYKVmAgJ6s4FrlwABAgQIECBAgAABAr8F/BlNQECPNhH1ECBAgAABAgQIECBAoIKAHk4LCOinyTxAgAABAgQIECBAgAABArsFKu4voFecqp4IECBAgAABAgQIECBA4I7AlmcF9C3sNiVAgAABAgQIECBAgACBvgLPOxfQn7u4SoAAAQIECBAgQIAAAQIElgoMC+hLq7YZAQIECBAgQIAAAQIECBAoJpAloBdj1w4BAgQIECBAgAABAgQIEPgqIKD/z8MfBAgQIECAAAECBAgQIEBgr4CAvsLfHgQIECBAgAABAgQIECBA4I2AgP4GKMPbaiRAgAABAgQIECBAgACB/AICev4Zzu7A+gQIECBAgAABAgQIECCwQEBAX4Bsi1cC3iNAgAABAgQIECBAgACBh4CA/lDwqiugMwIECBAgQIAAAQIECCQRENCTDEqZMQVURYAAAQIECBAgQIAAgVECAvooSesQGC9gRQIECBAgQIAAAQIEGgkI6I2GrVUCXwX8RoAAAQIECBAgQCCKgIAeaRpqIVBFQB8ECBAgQIAAgWwCAnq2iamXAAECBAgQIBBBQA0ECBAYLiCgDye1IAECBAgQIEBgloB1CRAgQGCtgIC+1ttuBAgQIECAAAECfwT8RIAAAQLfBAT0byB+JUCAAAECBAgQKCygNwIECOQQENCTD0+7BAgQIECAAAECBAhUF/hRwJkSAAAQAElEQVQmoBMCBP4SENCPsnqMAAECBAgQIECAAAECBPYKCOhr/e1OgAABAgQIECBAgAABAl0F/t2sgN5VI/olQIAAAQIECBAgQIAAgV0CAnpde/sRIECAAAECBAgQIECAQBaB/38FAT3LmNRJgAABAgQIECBAgAABAjEFBPSh83ATAQIECBAII2ANAgQIECBQRkBALzNKjRAgMFfAygQIECBAgACB/gICev8Z65AAgQ4C+iRAgAABAgQIHBAQ0A8guYUAAQIECBCIKqAuAgQIECgiIKAXGaQ2CBAgQIDADAFrEiBAgACBPgICep9Z65QAAQIECPwl4E8CBAgQIBBLQECPNQ/VECBAgACBKgL6IECAAAECiQQE9ETDUioBAgQIEIghoAYCBAgQIFBPQECvN1MdESBAgAABAncFPE+AAAECGwQE9A3otiRAgAABAgR6Cui6qkDdBKoLCOjVJ6w/AgQIECBAgACBqwKeI0DglYCA/krHewQIECBAgAABAnkFVE6AQGIBAf0/lbpBhQQIECBAgAABAgQIECBQTEBALzZQ7RAgQIAAi1IECBAgQIBAEgEBPcmglEmAAAECBAgQIECAAAECcQV0cExAQD/m5C4CBAgQIECAAAECBAgQiCmgqrQCAnra0SmcAAECBAgQIECAAIHVAnYcJyCgj/O0EgECBAgQIECAAAECBAgcE2hwl4De4ATokQABAgQIECBAgAABAgT+Fpgc0P9+uP8IECBAgAABAgQIECBAgAABAgcEBPQDSGFvUQ0BAgQIECBAgAABAgQI1BAQ0GvMURcECBAgQIDATAFrEyBAgMBiAQF9MbjtCBAgQIAAAQIEDgj4iQABAgS+CQjo30D8SoAAAQIECBAgUEVAHwQIEEgmIKAnG5hyCRAgQIAAAQIRBNRAgAABAsEFBPTgA1IeAQIECBAgkE9AxQQIECBwV0BAv+vneQIECBAgQIDAbgH7EyBAoKKAgF5xqnoiQIAAAQIECFwV8BwBAl0FBPSuk9c3AQIECBAgQKCXgK4JEPiXgID+LxC/EiBAgAABAgQI1BLQDQECOgEB3RkgQIAAAQIECBAg0EbA7gQI/P8CArozQIAAAQIECBAgQKCdgM4JEHgqIKA/ZXGRAAECBAgQIECAAIF8AuolQCCrgICedXLqJkCAAAECBAgQWC9gRwIE5gkI6PNsrUyAAAECBAgQIECAAIFjAu4iQKCxgIDeePhaJ0CAAAECBAgQINBLQL8ECMQSENBjTUMlBAgQIECAAAECBFoL2J8AgXkCAvpVWhyLOwAAAltJREFU27D/P/b2J0CAAAECBAgQINCOgAMJ5BAQ0HPMSZUECBAgQIAAgYYCKiVAgMAlAQH9EpuHCBAgQIAAAQIECKwXsCMBAvMEBPR5tlYmQIAAAQIECBAgcF7AEwS6CgjogSevcgIECBAgQIAAAQIECNQUENBrzlVXBAgQIECAAAECBM4LqJxAYwEBvfHwtU6AAAECBAgQIEDgvID1CPQSENADzVu9BAgQIECAAAECBAgQ6C4goNc6AfolQIAAAQIECBAgQIBAEgEBPcmgVEmAAAECBAgQSC6gfAIECJwVENDPirmfAAECBAgQIECAAIF9AnYn0FxAQG9+ALRPgAABAgQIECBAgEAHAT0SaCIgoDcZtDYJECBAgAABAgQIENgv4A4CBGoKCOg156orAgQIECBAgACBSwKeI9BVQEA/OHm1EyBAgAABAgQIECBAYL+AHQg0FxDQmx8A7RMgQIAAAQIEOgjokQCBdAICerqRKZgAAQIECBAgEFdAZQQIEBgtIKCPFrUeAQIECBAgQIAAgXECViJAoJuAgN5t4volQIAAAQIECBD4LeBPAgS6CQjoAfauXgIECBAgQIBANQF9ECBAIJqAgB5tIuohQIAAAQIECBAg0FFAjwSaCwjozQ+A9gkQIECAAAECBAgQINBZoHtA7zx7vRMgQIAAAQIECBAgQIBAUIH/A0qw7CpaxP9RAAAAAElFTkSuQmCC"/>
-          </defs>
-        </svg>
-      </div>
+      <img 
+        src={Arrow} 
+        alt="Scroll down" 
+        className={`splash__scroll-arrow ${showTopLogo ? 'splash__scroll-arrow--visible' : ''}`}
+      />
 
     </div>
 
@@ -257,6 +275,190 @@ const Home = () => {
               <img src={Frame} alt="" className="section-two__frame" />
               <img src={FramedPic} alt="Staircase" className="section-two__framed-pic" />
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3 - Our Process */}
+    <section className="section-three">
+      <div className="section-three__container">
+        <div className="section-three__header">
+          <h2 className="section-three__heading">OUR PROCESS</h2>
+          <div className="section-three__watermark">
+            <span>EXPECTATIONS</span>
+            <span>EXPECTATIONS</span>
+          </div>
+        </div>
+        <p className="section-three__text">
+          AT AC STAIRS & RAILINGS, WE ENSURE EVERY PROJECT EXCEEDS EXPECTATIONS.
+          FROM <span className="section-three__highlight">CONSULTATION & DESIGN</span>, THROUGH <span className="section-three__highlight">MATERIAL SELECTION</span> AND <span className="section-three__highlight">EXPERT INSTALLATION</span>, TO <span className="section-three__highlight">FINAL TOUCHES & QUALITY CHECK</span>, WE HANDLE EVERY STEP WITH PRECISION AND CARE.
+        </p>
+      </div>
+      <div className="section-three__topo-pattern"></div>
+    </section>
+
+    {/* Section 4 - Our Services */}
+    <section className="section-four">
+      <div className="section-four__image">
+        <img src={AguyHoldingIdk} alt="Craftsman at work" />
+      </div>
+      <div className="section-four__content">
+        <span className="section-four__label">OUR SERVICES</span>
+        <h2 className="section-four__title">CRAFTED SOLUTIONS<br />FOR REFINED SPACES</h2>
+        
+        <div className="section-four__accordion">
+          <div 
+            className={`section-four__item ${activeService === 0 ? 'section-four__item--active' : ''}`}
+            onClick={() => setActiveService(activeService === 0 ? null : 0)}
+          >
+            <div className="section-four__item-header">
+              <span>Staircase Renovation</span>
+              <span className="section-four__icon"></span>
+            </div>
+            <div className="section-four__item-body">
+              <p className="section-four__item-content">
+                Transform your existing staircase with our expert renovation services. We breathe new life into worn stairs with refinishing, structural repairs, and modern updates.
+              </p>
+            </div>
+          </div>
+
+          <div 
+            className={`section-four__item ${activeService === 1 ? 'section-four__item--active' : ''}`}
+            onClick={() => setActiveService(activeService === 1 ? null : 1)}
+          >
+            <div className="section-four__item-header">
+              <span>Custom Stair Installations</span>
+              <span className="section-four__icon"></span>
+            </div>
+            <div className="section-four__item-body">
+              <p className="section-four__item-content">
+                From floating and spiral staircases to curved layouts and basement stairs, we design and install custom-built solutions that perfectly fit your home's layout and style.
+              </p>
+            </div>
+          </div>
+
+          <div 
+            className={`section-four__item ${activeService === 2 ? 'section-four__item--active' : ''}`}
+            onClick={() => setActiveService(activeService === 2 ? null : 2)}
+          >
+            <div className="section-four__item-header">
+              <span>Railing & Spindle Installations</span>
+              <span className="section-four__icon"></span>
+            </div>
+            <div className="section-four__item-body">
+              <p className="section-four__item-content">
+                Upgrade your railings with our premium selection of wood, metal, and glass options. We install spindles, balusters, and handrails that combine safety with stunning aesthetics.
+              </p>
+            </div>
+          </div>
+
+          <div 
+            className={`section-four__item ${activeService === 3 ? 'section-four__item--active' : ''}`}
+            onClick={() => setActiveService(activeService === 3 ? null : 3)}
+          >
+            <div className="section-four__item-header">
+              <span>Hardwood Floor Refinishing</span>
+              <span className="section-four__icon"></span>
+            </div>
+            <div className="section-four__item-body">
+              <p className="section-four__item-content">
+                Restore the natural beauty of your hardwood floors with our professional refinishing services. We sand, stain, and seal to perfection.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 5 - Our Projects */}
+    <section className="section-five">
+      <div className="section-five__header">
+        <h2 className="section-five__title">OUR SUCCESSFULLY FINISHED PROJECTS</h2>
+        <p className="section-five__subtitle">
+          We love seeing our work bring spaces to life. Explore selected projects that showcase inspiring, functional designs.
+        </p>
+      </div>
+      
+      <div className="section-five__carousel" onScroll={handleCarouselScroll}>
+        {projects.map((project, index) => (
+          <div key={index} className="section-five__card">
+            <div className="section-five__card-image">
+              <img src={project.img} alt={project.title} />
+            </div>
+            <p className="section-five__card-title">{project.title}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="section-five__controls">
+        <div className="section-five__progress">
+          <div 
+            className="section-five__progress-bar" 
+            style={{ width: `${Math.max(20, scrollPosition)}%` }}
+          ></div>
+        </div>
+        <div className="section-five__arrows">
+          <button className="section-five__arrow" onClick={() => scrollCarousel('left')}>
+            <span>‹</span>
+          </button>
+          <button className="section-five__arrow" onClick={() => scrollCarousel('right')}>
+            <span>›</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 6 - Hassle-Free & CTA */}
+    <section className="section-six">
+      {/* Top part - Features */}
+      <div className="section-six__features">
+        <h2 className="section-six__features-title">Hassle-Free, Every Time</h2>
+        <div className="section-six__features-grid">
+          <div className="section-six__feature">
+            <div className="section-six__feature-icon">
+              <span>🏠</span>
+            </div>
+            <h3 className="section-six__feature-title">Built for Real Homes</h3>
+            <p className="section-six__feature-desc">Thoughtfully crafted solutions designed to fit real homes and everyday living.</p>
+          </div>
+          <div className="section-six__feature">
+            <div className="section-six__feature-icon">
+              <span>💎</span>
+            </div>
+            <h3 className="section-six__feature-title">Work You Can Trust</h3>
+            <p className="section-six__feature-desc">Reliable workmanship delivered with precision, care, and attention to detail.</p>
+          </div>
+          <div className="section-six__feature">
+            <div className="section-six__feature-icon">
+              <span>⭐</span>
+            </div>
+            <h3 className="section-six__feature-title">Service Excellence</h3>
+            <p className="section-six__feature-desc">Dedicated support and professional execution from start to completion.</p>
+          </div>
+          <div className="section-six__feature">
+            <div className="section-six__feature-icon">
+              <span>📍</span>
+            </div>
+            <h3 className="section-six__feature-title">We Reach You Anywhere</h3>
+            <p className="section-six__feature-desc">Seamless delivery and installation wherever your project is located.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom part - CTA */}
+      <div className="section-six__cta">
+        <div className="section-six__cta-image">
+          <img src={InspectingTheFloor} alt="Inspecting the floor" />
+        </div>
+        <div className="section-six__cta-content">
+          <div className="section-six__cta-card">
+            <span className="section-six__cta-label">START YOUR PROJECT TODAY</span>
+            <h2 className="section-six__cta-title">You tell us your vision.<br />We will provide the solution.</h2>
+            <button className="section-six__cta-button">
+              Get a Free Consultation
+              <span className="section-six__cta-arrow">→</span>
+            </button>
           </div>
         </div>
       </div>
